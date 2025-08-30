@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { saveAs } from 'file-saver';
 import { NgZorroCustomModule } from '../../ng-zorro-custom.module';
 
 interface AttendanceRecord {
@@ -35,5 +36,31 @@ export class AttendanceComponent implements OnInit {
         next: (data) => (this.attendanceRecords = data),
         error: (err) => console.error('Failed to load attendance', err),
       });
+  }
+
+  exportToCSV() {
+    const headers = [
+      'ID',
+      'Student Name',
+      'Course Title',
+      'Batch Name',
+      'Session Date',
+      'Status',
+    ];
+    const rows = this.attendanceRecords.map((record) =>
+      [
+        record.id,
+        record.student_name,
+        record.course_title,
+        record.batch_name,
+        record.session_date,
+        record.status,
+      ]
+        .map((field) => `"${String(field).replace(/"/g, '""')}"`)
+        .join(',')
+    );
+    const csvContent = [headers.join(','), ...rows].join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, 'attendance.csv');
   }
 }
