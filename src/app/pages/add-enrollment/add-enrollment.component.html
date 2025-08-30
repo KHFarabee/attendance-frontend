@@ -1,0 +1,65 @@
+<div class="p-6 max-w-lg mx-auto">
+  <h2 class="text-xl font-bold mb-4">Add Enrollment</h2>
+
+  <form nz-form (ngSubmit)="addEnrollment()">
+    <nz-form-item class="mb-2">
+      <nz-form-label [nzSpan]="6">Student</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select
+          [(ngModel)]="newEnrollment.student_id"
+          name="student"
+          required
+        >
+          <nz-option
+            *ngFor="let s of students"
+            [nzValue]="s.id"
+            [nzLabel]="s.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="mb-2">
+      <nz-form-label [nzSpan]="6">Course</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select [(ngModel)]="newEnrollment.course_id" name="course" required>
+          <nz-option
+            *ngFor="let c of courses"
+            [nzValue]="c.id"
+            [nzLabel]="c.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="mb-2">
+      <nz-form-label [nzSpan]="6">Batch</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select [(ngModel)]="newEnrollment.batch_id" name="batch" required>
+          <nz-option
+            *ngFor="let b of batches"
+            [nzValue]="b.id"
+            [nzLabel]="b.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="mb-2">
+      <nz-form-label [nzSpan]="6">Status</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select [(ngModel)]="newEnrollment.status" name="status" required>
+          <nz-option nzValue="Enrolled" nzLabel="Enrolled"></nz-option>
+          <nz-option nzValue="Dropped" nzLabel="Dropped"></nz-option>
+          <nz-option nzValue="Completed" nzLabel="Completed"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div class="text-red-600 mb-2" *ngIf="error">{{ error }}</div>
+
+    <button nz-button nzType="primary" [disabled]="loading">
+      {{ loading ? "Adding..." : "Add Enrollment" }}
+    </button>
+  </form>
+</div>

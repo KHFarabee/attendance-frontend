@@ -1,0 +1,65 @@
+<div class="p-6 max-w-lg mx-auto bg-white rounded-sm">
+  <h2 class="text-2xl font-bold mb-4">Add Student</h2>
+
+  <form (ngSubmit)="addStudent()">
+    <div class="mb-2">
+      <label class="block mb-1">Roll Number</label>
+      <input nz-input [(ngModel)]="student.roll_no" name="roll_no" required />
+    </div>
+
+    <div class="mb-2">
+      <label class="block mb-1">Name</label>
+      <input nz-input [(ngModel)]="student.name" name="name" required />
+    </div>
+
+    <div class="mb-2">
+      <label class="block mb-1">Email</label>
+      <input
+        nz-input
+        type="email"
+        [(ngModel)]="student.email"
+        name="email"
+        required
+      />
+    </div>
+
+    <div class="mb-2">
+      <label class="block mb-1">Phone</label>
+      <input nz-input [(ngModel)]="student.phone" name="phone" />
+    </div>
+
+    <div class="mb-2">
+      <label class="block mb-1">Batch</label>
+      <nz-select
+        [(ngModel)]="student.batch_id"
+        name="batch_id"
+        style="width: 100%"
+        placeholder="Select batch"
+      >
+        <nz-option
+          *ngFor="let b of batches"
+          [nzValue]="b.id"
+          [nzLabel]="b.name"
+        ></nz-option>
+      </nz-select>
+    </div>
+
+    <div class="mb-4">
+      <label class="block mb-1">Status</label>
+      <nz-select [(ngModel)]="student.status" name="status" style="width: 100%">
+        <nz-option
+          *ngFor="let s of statusOptions"
+          [nzValue]="s"
+          [nzLabel]="s"
+        ></nz-option>
+      </nz-select>
+    </div>
+
+    <div class="text-red-600 mb-2" *ngIf="error">{{ error }}</div>
+    <div class="flex justify-end">
+      <button nz-button nzType="primary" [disabled]="loading">
+        {{ loading ? "Adding..." : "Add Student" }}
+      </button>
+    </div>
+  </form>
+</div>

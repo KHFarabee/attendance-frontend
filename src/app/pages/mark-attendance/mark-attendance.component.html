@@ -1,0 +1,62 @@
+<div class="p-6 max-w-4xl mx-auto">
+  <h2 class="text-xl font-bold mb-4">Mark Attendance</h2>
+
+  <form nz-form (ngSubmit)="submitAttendance()">
+    <nz-form-item class="mb-4">
+      <nz-form-label [nzSpan]="6">Course</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select [(ngModel)]="selectedCourse" name="course" required>
+          <nz-option
+            *ngFor="let c of courses"
+            [nzValue]="c.id"
+            [nzLabel]="c.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-4">
+      <nz-form-label [nzSpan]="6">Batch</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <nz-select
+          [(ngModel)]="selectedBatch"
+          name="batch"
+          (ngModelChange)="loadStudents()"
+          required
+        >
+          <nz-option
+            *ngFor="let b of batches"
+            [nzValue]="b.id"
+            [nzLabel]="b.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-table [nzData]="students" [nzBordered]="true" class="mb-4">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of students">
+          <td>{{ s.name }}</td>
+          <td>
+            <nz-select
+              [(ngModel)]="attendanceMap[s.id]"
+              name="status-{{ s.id }}"
+            >
+              <nz-option nzValue="Present" nzLabel="Present"></nz-option>
+              <nz-option nzValue="Absent" nzLabel="Absent"></nz-option>
+            </nz-select>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+    <button nz-button nzType="primary" [disabled]="loading">
+      {{ loading ? "Submitting..." : "Submit Attendance" }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,26 @@
+<div class="p-6 max-w-6xl mx-auto bg-white rounded-sm">
+  <div class="flex justify-between items-center py-2">
+    <h2 class="text-2xl font-bold mb-4">Instructors</h2>
+
+    <button nz-button nzType="primary" [routerLink]="'/add-instructor'">
+      Add New Instructor
+    </button>
+  </div>
+
+  <div class="text-red-600 mb-2" *ngIf="error">{{ error }}</div>
+
+  <nz-table [nzData]="instructors" [nzBordered]="true" [nzLoading]="loading">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let instructor of instructors">
+        <td>{{ instructor.name }}</td>
+        <td>{{ instructor.email }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

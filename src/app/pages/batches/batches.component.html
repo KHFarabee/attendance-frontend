@@ -1,0 +1,24 @@
+<div class="p-6 max-w-6xl mx-auto bg-white rounded-sm">
+  <div class="flex justify-between items-center py-2">
+    <h2 class="text-2xl font-bold mb-4">Batches</h2>
+
+    <button nz-button nzType="primary" [routerLink]="'/add-batch'">
+      Add New Batch
+    </button>
+  </div>
+
+  <div class="text-red-600 mb-2" *ngIf="error">{{ error }}</div>
+
+  <nz-table [nzData]="batches" [nzBordered]="true" [nzLoading]="loading">
+    <thead>
+      <tr>
+        <th>Batch Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let batch of batches">
+        <td>{{ batch.name }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

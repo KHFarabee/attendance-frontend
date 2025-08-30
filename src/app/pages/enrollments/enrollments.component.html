@@ -1,0 +1,28 @@
+<div class="p-6 max-w-4xl mx-auto bg-white rounded-sm">
+  <div class="flex justify-between items-center">
+    <h2 class="text-xl font-bold mb-4">Enrollments</h2>
+
+    <button nz-button nzType="primary" [routerLink]="['/add-enrollment']">
+      Add Enrollment
+    </button>
+  </div>
+
+  <nz-table [nzData]="enrollments" [nzBordered]="true" class="mt-4">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Batch</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of enrollments">
+        <td>{{ e.student_name }}</td>
+        <td>{{ e.course_title }}</td>
+        <td>{{ e.batch_name }}</td>
+        <td>{{ e.status }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

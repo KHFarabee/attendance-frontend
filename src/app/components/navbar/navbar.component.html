@@ -1,0 +1,20 @@
+<!-- <nz-menu nzMode="horizontal" class="mb-4 bg-white shadow p-2">
+  <nz-menu-item [routerLink]="['/students']">Students</nz-menu-item>
+  <nz-menu-item [routerLink]="['/instructors']">Instructors</nz-menu-item>
+  <nz-menu-item [routerLink]="['/batches']">Batches</nz-menu-item>
+  <nz-menu-item [routerLink]="['/courses']">Courses</nz-menu-item>
+  <nz-menu-item [routerLink]="['/attendance']">Attendance</nz-menu-item>
+</nz-menu> -->
+<ul
+  nz-menu
+  nzMode="horizontal"
+  class="mb-4 bg-white shadow flex gap-5 p-5 justify-center"
+>
+  <li
+    *ngFor="let item of navList"
+    class="cursor-pointer"
+    [routerLink]="item['routerLink']"
+  >
+    {{ item["name"] }}
+  </li>
+</ul>

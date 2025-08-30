@@ -1,0 +1,32 @@
+<div class="p-6 max-w-6xl mx-auto bg-white rounded-sm">
+  <div class="flex justify-between items-center py-2">
+    <h2 class="text-2xl font-bold mb-4">Students</h2>
+
+    <button nz-button nzType="primary" [routerLink]="'/add-student'">
+      Add New Student
+    </button>
+  </div>
+
+  <div class="text-red-600 mb-2" *ngIf="error">{{ error }}</div>
+
+  <nz-table [nzData]="students" [nzBordered]="true" [nzLoading]="loading">
+    <thead>
+      <tr>
+        <th>Roll Number</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.roll_no }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.phone }}</td>
+        <td>{{ student.status }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

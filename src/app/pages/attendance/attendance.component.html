@@ -1,0 +1,24 @@
+<div class="p-6 max-w-5xl mx-auto bg-white rounded-sm">
+  <h2 class="text-xl font-bold mb-4">Attendance Records</h2>
+
+  <nz-table [nzData]="attendanceRecords" [nzBordered]="true">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Batch</th>
+        <th>Session Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of attendanceRecords">
+        <td>{{ r.student_name }}</td>
+        <td>{{ r.course_title }}</td>
+        <td>{{ r.batch_name }}</td>
+        <td>{{ r.session_date | date : "mediumDate" }}</td>
+        <td>{{ r.status }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
