@@ -1,4 +1,4 @@
-<div class="p-6 max-w-lg mx-auto">
+<div class="p-6 max-w-lg mx-auto bg-white rounded-sm">
   <h2 class="text-xl font-bold mb-4">Add Enrollment</h2>
 
   <form nz-form (ngSubmit)="addEnrollment()">
@@ -58,8 +58,10 @@
 
     <div class="text-red-600 mb-2" *ngIf="error">{{ error }}</div>
 
-    <button nz-button nzType="primary" [disabled]="loading">
-      {{ loading ? "Adding..." : "Add Enrollment" }}
-    </button>
+    <div class="flex justify-end">
+      <button nz-button nzType="primary" [disabled]="loading">
+        {{ loading ? "Adding..." : "Add Enrollment" }}
+      </button>
+    </div>
   </form>
 </div>
